@@ -15,3 +15,19 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+
+Route::get('/login', 'usuarioController@login');
+Route::post('/login', 'usuarioController@login');
+
+
+Route::get('/crearUsuario', 'usuarioController@crearUsuario');
+Route::post('/crearUsuario', 'usuarioController@crearUsuario');
+
+Route::get('/configuracionCuenta', 'usuarioController@configuracionCuenta');
+Route::post('/configuracionCuenta', 'usuarioController@configuracionCuenta');
+
+
+Event::listen('illuminate.query', function() {
+    //print_r(func_get_args());
+});
