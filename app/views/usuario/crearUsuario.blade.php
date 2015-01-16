@@ -44,24 +44,27 @@
 												<div class="row">
 													<div class="vspace-12-sm"></div>
 													<div class="col-xs-12 col-sm-8">
+														@if(count($usuario))
+															<input type="hidden" name="usuario_id" value="{{$usuario['id']}}" >
+														@endif
 														<div class="form-group">
 															<label for="form-email" class="col-sm-4 control-label no-padding-right">Email</label>
 															<div class="col-sm-8">
-																<input type="email" placeholder="Email" id="form-email" class="col-xs-12 col-sm-12" name="email">
+																<input type="email" placeholder="Email" id="form-email" class="col-xs-12 col-sm-12" name="email" @if(count($usuario)) value="{{ $usuario['email'] }}" @endif >
 															</div>
 														</div>
 														<div class="space-4"></div>
 														<div class="form-group">
 															<label for="form-name" class="col-sm-4 control-label no-padding-right">Nombre</label>
 															<div class="col-sm-8">
-																<input type="text" placeholder="Nombre" id="form-name" class="col-xs-12 col-sm-12" name="nombre">
+																<input type="text" placeholder="Nombre" id="form-name" class="col-xs-12 col-sm-12" name="nombre" @if(count($usuario)) value="{{ $usuario['nombre'] }}" @endif >
 																
 															</div>
 														</div>
 														<div class="form-group">
 															<label for="form-apellido" class="col-sm-4 control-label no-padding-right">Apellido</label>
 															<div class="col-sm-8">
-																<input type="text" placeholder="Apellido" id="form-apellido" class="col-xs-12 col-sm-12" name="apellido">
+																<input type="text" placeholder="Apellido" id="form-apellido" class="col-xs-12 col-sm-12" name="apellido" @if(count($usuario)) value="{{ $usuario['apellido'] }}" @endif >
 															</div>
 														</div>
 														
@@ -72,7 +75,7 @@
 																@foreach($perfiles as $perfil)
 																<div class="radio">
 																	<label>
-																		<input name="perfil" type="radio" class="ace" value="{{$perfil->id}}">
+																		<input name="perfil" type="radio" class="ace" value="{{$perfil->id}}" @if(count($usuario)) @if($usuario['perfil_id'] == $perfil->id) checked  @endif @endif >
 																		<span class="lbl"> {{$perfil->nombre_perfil}}</span>
 																	</label>
 																</div>
@@ -84,7 +87,7 @@
 												</div>
 
 												<div class="space-4"></div>				
-
+												@if(!count($usuario))
 												<h4 class="header blue bolder smaller">Contraseña <i class="orange ace-icon fa fa-key bigger-125"></i></h4>
 												<div class="row">
 													<div class="vspace-12-sm"></div>
@@ -105,6 +108,7 @@
 														</div>
 													</div>
 												</div>
+												@endif
 
 											</div>
 										</div>
