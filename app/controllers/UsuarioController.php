@@ -163,7 +163,15 @@ class UsuarioController extends Controller {
 	}
 	
 	public function usuarios(){
-		return View::make('cms/usuario/usuarios');
+		if(!Auth::Check()){
+			return Redirect::to('login');	
+		}
+		$id = Auth::user()->id;
+		$usuarios = DB::table('usuarios')
+                    ->where('id', '!=', $id)
+                    ->get();
+        print_r($usuarios); exit;
+		return View::make('cms/usuario/usuarios', array('usuarios' => $usuarios));
 	}
 	
 	
