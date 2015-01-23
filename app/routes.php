@@ -27,6 +27,7 @@ Route::post('/crearUsuario', 'usuarioController@crearUsuario');
 Route::get('/configuracionCuenta', 'usuarioController@configuracionCuenta');
 Route::post('/configuracionCuenta', 'usuarioController@configuracionCuenta');
 
+Route::get('/usuarios', 'usuarioController@usuarios');
 
 Event::listen('illuminate.query', function() {
     //print_r(func_get_args());
